@@ -35,7 +35,7 @@ func NewLogger(mode, level string) *zap.Logger {
 		ErrorOutputPaths: []string{"stderr"},
 	}
 
-	// Add options for "development" mode
+	// Add options.go for "development" mode
 	switch mode {
 	case "development":
 		loggerConfig.EncoderConfig.CallerKey = "caller"
