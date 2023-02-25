@@ -63,7 +63,7 @@ func (p *Postgres) Alive() (interface{}, error) {
 }
 
 func (p *Postgres) Insert(note domain.Note) error {
-	if _, err := p.db.Model(note).Insert(); err != nil {
+	if _, err := p.db.Model(&note).Insert(); err != nil {
 		p.logger.Error("insert failed")
 		return err
 	}
@@ -105,7 +105,7 @@ func addOptions(q *pg.Query, opts domain.SearchOptions) {
 
 func (p *Postgres) Get(opts domain.SearchOptions) ([]domain.Note, error) {
 	var notes []domain.Note
-	q := p.db.Model(notes)
+	q := p.db.Model(&notes)
 	addOptions(q, opts)
 
 	if err := q.Select(); err != nil {

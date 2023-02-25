@@ -11,5 +11,5 @@ type Note struct {
 	Title     string      `json:"title" pg:"title, use_zero"`
 	Body      string      `json:"body" pg:"body, use_zero"`
 	Author    uuid.UUID   `json:"author" pg:"author, type:uuid, use_zero"`
-	Tags      []uuid.UUID `json:"tags" pg:"tags, type:array"`
+	Tags      []uuid.UUID `json:"tags" pg:"tags, type:uuid[]"`
 }
