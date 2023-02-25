@@ -62,7 +62,7 @@ func (p *Postgres) Alive() (interface{}, error) {
 	return "alive", nil
 }
 
-func (p *Postgres) Create(note domain.Note) error {
+func (p *Postgres) Insert(note domain.Note) error {
 	if _, err := p.db.Model(note).Insert(); err != nil {
 		p.logger.Error("insert failed")
 		return err
