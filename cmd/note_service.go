@@ -1,13 +1,10 @@
 package main
 
 import (
-	"NoteKeeper/internal/domain"
 	"NoteKeeper/internal/repository"
 	"NoteKeeper/internal/usecase"
 	"NoteKeeper/pkg/common"
 	"flag"
-	"fmt"
-	"github.com/google/uuid"
 	"go.uber.org/zap"
 )
 
@@ -31,27 +28,5 @@ func main() {
 	}
 
 	// create usecase instance
-	usecase := usecase.NewNoteUsecase(logger, repo)
-
-	note := domain.Note{
-		UID:    uuid.New(),
-		Title:  "my_note",
-		Body:   "that's a body",
-		Author: uuid.Nil,
-		Tags:   []uuid.UUID{uuid.New()},
-	}
-
-	if err := usecase.Create(note); err != nil {
-		logger.With(zap.NamedError("reason", err)).Error("failed to create note")
-		return
-	}
-
-	if nt, err := usecase.GetNote(note.UID); err != nil {
-		logger.With(zap.NamedError("reason", err)).Error("failed to create note")
-	} else {
-		logger.With(zap.String("note_instance", fmt.Sprintf("%v", nt))).Info("that's the note")
-	}
-
-	// TODO проверить апдейт и удаление
-
+	_ = usecase.NewNoteUsecase(logger, repo)
 }
