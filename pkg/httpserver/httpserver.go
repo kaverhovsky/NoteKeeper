@@ -16,7 +16,7 @@ type Server struct {
 	server *fasthttp.Server
 }
 
-func New(logger *zap.Logger, config *common.Config, routes *router.Router) *Server {
+func New(logger *zap.Logger, routes *router.Router) *Server {
 	server := &fasthttp.Server{
 		Name:               fmt.Sprintf("note_service fasthttp"),
 		Handler:            routes.Handler,
@@ -31,7 +31,6 @@ func New(logger *zap.Logger, config *common.Config, routes *router.Router) *Serv
 
 	return &Server{
 		logger: logger.Named("httpserver"),
-		config: config,
 		server: server,
 	}
 }

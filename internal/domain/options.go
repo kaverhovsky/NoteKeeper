@@ -6,5 +6,7 @@ import "github.com/google/uuid"
 type SearchOptions struct {
 	Title  *string
 	Author *uuid.UUID
-	Tags   []uuid.UUID
+	// TODO пока что будем совершать поиск по одному тегу
+	// TODO добавить поиск по нескольким (&& и ||)
+	Tag *uuid.UUID
 }
